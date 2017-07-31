@@ -89,8 +89,8 @@
 		<tbody>{% for message in messages %}
 			<tr>
 				<td class="timestamp">{{ message.datetime().strftime("%Y-%m-%d %H:%M:%S") }}</td>
-				<td class="channel"><a href="{{ request_args | set_request_arg("channel_ids", message.channel_id) | url_from_request_args }}">{{ message.channel.channel_name }}</a></td>
-				<td class="user"><a href="{{ request_args | set_request_arg("user_ids", message.user_id) | url_from_request_args }}" title="{{ message.user.user_real_name }}">{{ message.user.user_name }}</a></td>
+				<td class="channel"><a href="{{ request_args | set_request_arg("offset", None) | set_request_arg("channel_ids", message.channel_id) | url_from_request_args }}">{{ message.channel.channel_name }}</a></td>
+				<td class="user"><a href="{{ request_args | set_request_arg("offset", None) | set_request_arg("user_ids", message.user_id) | url_from_request_args }}" title="{{ message.user.user_real_name }}">{{ message.user.user_name }}</a></td>
 				<td class="value"><pre>{{ message | html_from_slack_sendable_text | safe }}</pre></td>
 			</tr>{% endfor %}
 		</tbody>
